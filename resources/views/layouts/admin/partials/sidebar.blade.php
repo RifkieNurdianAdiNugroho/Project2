@@ -5,40 +5,82 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
-                        <i data-feather="home" class="feather-icon"></i>
-                        <span class="hide-menu">Dashboard</span>
-                    </a>
-                </li>
-                <li class="list-divider"></li>
-                <li class="nav-small-cap">
-                    <span class="hide-menu">Applications</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
-                        <i data-feather="package" class="feather-icon"></i>
-                        <span class="hide-menu">Manajemen Barang</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
-                        <i data-feather="user" class="feather-icon"></i>
-                        <span class="hide-menu">Manajemen Penjual</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
-                        <i data-feather="users" class="feather-icon"></i>
-                        <span class="hide-menu">Manajemen Pembeli</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
-                        <i data-feather="credit-card" class="feather-icon"></i>
-                        <span class="hide-menu">Transaksi</span>
-                    </a>
-                </li>
+                @if (Auth::user()->role == 'admin')
+                    <li class="sidebar-item">
+                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                            <i data-feather="home" class="feather-icon"></i>
+                            <span class="hide-menu">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="list-divider"></li>
+                    <li class="nav-small-cap">
+                        <span class="hide-menu">Applications</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#" aria-expanded="false">
+                            <i data-feather="package" class="feather-icon"></i>
+                            <span class="hide-menu">Manajemen Barang</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                            <i data-feather="user" class="feather-icon"></i>
+                            <span class="hide-menu">Manajemen Penjual</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                            <i data-feather="users" class="feather-icon"></i>
+                            <span class="hide-menu">Manajemen Pembeli</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                            <i data-feather="credit-card" class="feather-icon"></i>
+                            <span class="hide-menu">Transaksi</span>
+                        </a>
+                    </li>
+                @elseif (Auth::user()->role == 'penjual')
+                    <li class="sidebar-item">
+                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                            <i data-feather="home" class="feather-icon"></i>
+                            <span class="hide-menu">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="list-divider"></li>
+                    <li class="nav-small-cap">
+                        <span class="hide-menu">Applications</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#" aria-expanded="false">
+                            <i data-feather="package" class="feather-icon"></i>
+                            <span class="hide-menu">Manajemen Barang</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                            <i data-feather="credit-card" class="feather-icon"></i>
+                            <span class="hide-menu">Transaksi</span>
+                        </a>
+                    </li>
+                @elseif (Auth::user()->role == 'pembeli')
+                    <li class="sidebar-item">
+                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                            <i data-feather="home" class="feather-icon"></i>
+                            <span class="hide-menu">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="list-divider"></li>
+                    <li class="nav-small-cap">
+                        <span class="hide-menu">Applications</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                            <i data-feather="credit-card" class="feather-icon"></i>
+                            <span class="hide-menu">Transaksi</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

@@ -53,6 +53,16 @@ class User extends Authenticatable
         return $this->hasOne(UserDetail::class);
     }
 
+    /**
+     * Get all of the goods for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function goods()
+    {
+        return $this->hasMany(Goods::class);
+    }
+
     public function isAdmin()
     {
         if($this->role == 'admin')

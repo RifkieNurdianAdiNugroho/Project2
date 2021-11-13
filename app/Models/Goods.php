@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Goods extends Model
 {
@@ -34,5 +36,19 @@ class Goods extends Model
     public function goodsImages()
     {
         return $this->hasMany(GoodsImages::class);
+    }
+
+    /**
+      * The "booted" method of the model.
+      *
+      * @return void
+      */
+    protected static function booted()
+    {
+        if (Auth::user()->role == 'penjual') {
+            static::addGlobalScope('by_user', function (Builder $builder) {
+                $builder->where('user_id', auth()->id());
+            });
+        }
     }
 }

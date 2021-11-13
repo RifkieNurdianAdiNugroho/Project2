@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreGoods extends FormRequest
 {
@@ -23,12 +24,21 @@ class StoreGoods extends FormRequest
      */
     public function rules()
     {
-        return [
-            'user_id' => 'required',
-            'name' => 'required|string|max:255',
-            'category' => 'required',
-            'price' => 'required|numeric',
-            'description' => '',
-        ];
+        if (Auth::user()->role == 'penjual') {
+            return [
+                'name' => 'required|string|max:255',
+                'category' => 'required',
+                'price' => 'required|numeric',
+                'description' => '',
+            ];
+        } else {
+            return [
+                'user_id' => 'required',
+                'name' => 'required|string|max:255',
+                'category' => 'required',
+                'price' => 'required|numeric',
+                'description' => '',
+            ];
+        }
     }
 }

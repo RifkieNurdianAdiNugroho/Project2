@@ -7,6 +7,7 @@ use App\Models\Goods;
 use App\Models\GoodsImages;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GoodsController extends Controller
 {
@@ -18,7 +19,11 @@ class GoodsController extends Controller
     public function index()
     {
         $goods = Goods::all();
-        return view('admin.goods.index', compact('goods'));
+        if (Auth::user()->role == 'admin') {
+            return view('admin.goods.index', compact('goods'));
+        } else {
+            return view('seller.goods.index', compact('goods'));
+        }
     }
 
     /**
@@ -28,8 +33,12 @@ class GoodsController extends Controller
      */
     public function create()
     {
-        $sellers = User::where('role', 'penjual')->get();
-        return view('admin.goods.create', compact('sellers'));
+        if (Auth::user()->role == 'admin') {
+            $sellers = User::where('role', 'penjual')->get();
+            return view('admin.goods.create', compact('sellers'));
+        } else {
+            return view('seller.goods.create');
+        }
     }
 
     /**
@@ -40,7 +49,11 @@ class GoodsController extends Controller
      */
     public function store(StoreGoods $request)
     {
-        $goods = Goods::create($request->validated());
+        if (Auth::user()->role == 'admin') {
+            $goods = Goods::create($request->validated());
+        } else {
+            auth()->user()->goods()->create($request->validated());
+        }
         if ($request->file('goods_images')) {
             for ($i = 0; $i < count($request->goods_images); $i++) {
                 if ($request->file('goods_images')[$i]) {
@@ -78,9 +91,13 @@ class GoodsController extends Controller
     public function edit($id)
     {
         $goods = Goods::find($id);
-        $sellers = User::where('role', 'penjual')->get();
         $images = GoodsImages::where('goods_id', $id)->get();
-        return view('admin.goods.edit', compact('goods', 'sellers', 'images'));
+        if (Auth::user()->role == 'admin') {
+            $sellers = User::where('role', 'penjual')->get();
+            return view('admin.goods.edit', compact('goods', 'sellers', 'images'));
+        } else {
+            return view('seller.goods.edit', compact('goods', 'images'));
+        }
     }
 
     /**
@@ -125,7 +142,7 @@ class GoodsController extends Controller
                 }
             }
         }
-       return redirect()->route('goods.index');
+        return redirect()->route('goods.index');
     }
 
     /**

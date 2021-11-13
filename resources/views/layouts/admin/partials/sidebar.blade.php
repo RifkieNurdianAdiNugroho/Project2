@@ -28,8 +28,8 @@
                             <span class="hide-menu">Manajemen Penjual</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                    <li class="sidebar-item {{ Request::segment(1) === 'buyers' ? 'selected' : '' }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('buyers.index') }}" aria-expanded="false">
                             <i data-feather="users" class="feather-icon"></i>
                             <span class="hide-menu">Manajemen Pembeli</span>
                         </a>

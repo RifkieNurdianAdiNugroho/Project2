@@ -51,8 +51,8 @@
                     <li class="nav-small-cap">
                         <span class="hide-menu">Applications</span>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="#" aria-expanded="false">
+                    <li class="sidebar-item {{ Request::segment(1) === 'goods' ? 'selected' : '' }}">
+                        <a class="sidebar-link" href="{{ route('goods.index') }}" aria-expanded="false">
                             <i data-feather="package" class="feather-icon"></i>
                             <span class="hide-menu">Manajemen Barang</span>
                         </a>

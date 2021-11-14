@@ -31,7 +31,7 @@
         <div class="row mt-3">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="#">
+                    <a href="{{ route('shop.index') }}">
                         <img src="{{ asset('adminmart/assets/images/text-logo.png') }}" alt="" width="124" height="40">
                     </a>
                 </div>

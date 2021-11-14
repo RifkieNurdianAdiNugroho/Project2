@@ -45,7 +45,7 @@ class Goods extends Model
       */
     protected static function booted()
     {
-        if (Auth::user()->role == 'penjual') {
+        if (isset(Auth::user()->role) && Auth::user()->role == 'penjual') {
             static::addGlobalScope('by_user', function (Builder $builder) {
                 $builder->where('user_id', auth()->id());
             });

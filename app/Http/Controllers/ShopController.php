@@ -18,4 +18,9 @@ class ShopController extends Controller
         $goods = Goods::with('goodsImages')->find($id);
         return view('shop.detail', compact('goods'));
     }
+
+    public function cart()
+    {
+        return view('shop.cart');
+    }
 }

@@ -9,7 +9,24 @@
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__auth">
-            <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
+            @if (!Auth::check())
+                <a href="{{ route('login') }}"><i class="fa fa-user"></i> Masuk</a>
+            @else
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button"
+                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Pesananku</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
     <div id="mobile-menu-wrap"></div>

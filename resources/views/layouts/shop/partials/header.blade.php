@@ -31,7 +31,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="#">Pesananku</a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
+                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
@@ -76,10 +76,16 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('shop.cart') }}">
+                                <a href="{{ route('shoppingCarts.index') }}">
                                     <i class="fa fa-shopping-bag" style="font-size: 24px"></i>
-                                    <span
-                                        style="font-size: 12px; height: 16px; width: 16px; line-height: 15px; top: -5px">3</span>
+                                    @php
+                                        $count = App\Models\ShoppingCart::count();
+                                    @endphp
+                                    @if ($count != 0)
+                                        <span style="font-size: 12px; height: 16px; width: 16px; line-height: 15px; top: -5px">
+                                            {{ App\Models\ShoppingCart::count() }}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @else

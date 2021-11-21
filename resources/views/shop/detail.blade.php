@@ -22,25 +22,29 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="product__details__text">
-                    <h3>{{ $goods->name }}</h3>
-                    <div class="product__details__rating">
-                        Penjual: <span>{{ $goods->user->name }}</span>
-                    </div>
-                    <div class="product__details__price">
-                        {{ 'Rp ' . number_format($goods->price, 0, ',', '.') }}
-                    </div>
-                    <p>{{ $goods->description }}</p>
-                    <div class="product__details__quantity">
-                        <div class="quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1">
+                <form action="{{ route('shoppingCarts.store') }}" method="POST">
+                    @csrf
+                    <div class="product__details__text">
+                        <h3>{{ $goods->name }}</h3>
+                        <div class="product__details__rating">
+                            Penjual: <span>{{ $goods->user->name }}</span>
+                        </div>
+                        <div class="product__details__price">
+                            {{ 'Rp ' . number_format($goods->price, 0, ',', '.') }}
+                        </div>
+                        <p>{{ $goods->description }}</p>
+                        <div class="product__details__quantity">
+                            <div class="quantity">
+                                <div class="pro-qty">
+                                    <input type="text" value="1" name="qty">
+                                </div>
                             </div>
                         </div>
+                        <input type="hidden" name="goods_id" value="{{ $goods->id }}">
+                        <button type="submit" class="primary-btn" style="border: none">Masukkan Keranjang</button>
+                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     </div>
-                    <a href="#" class="primary-btn">Masukkan Keranjang</a>
-                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                </div>
+                </form>
             </div>
         </div>
     </div>

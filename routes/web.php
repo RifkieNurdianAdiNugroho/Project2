@@ -5,6 +5,7 @@ use App\Http\Controllers\GoodsController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,11 +22,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/{id}/show', [ShopController::class, 'show'])->name('shop.show');
 Route::resource('shoppingCarts', ShoppingCartController::class)->only('index', 'store');
-Route::put('shoppingCarts', [ShoppingCartController::class, 'update'])->name('shoppingCarts.update');
-Route::get('shoppingCarts/{id}', [ShoppingCartController::class, 'destroy'])->name('shoppingCarts.destroy');
-Route::get('/checkout', [ShopController::class, 'checkoutForm'])->name('shop.checkoutForm');
 
 Auth::routes();
+
+Route::middleware(['auth'])->group(function () {
+    Route::put('shoppingCarts', [ShoppingCartController::class, 'update'])->name('shoppingCarts.update');
+    Route::get('shoppingCarts/{id}', [ShoppingCartController::class, 'destroy'])->name('shoppingCarts.destroy');
+    Route::resource('transactions', TransactionController::class);
+});
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::view('admin/dashboard', 'layouts.admin.master');

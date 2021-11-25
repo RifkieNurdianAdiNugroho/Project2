@@ -51,4 +51,9 @@ class ShoppingCart extends Model
     {
         return ShoppingCart::where('buyer_id', auth()->id())->count();
     }
+
+    public static function getDataById()
+    {
+        return ShoppingCart::with('goods')->where('buyer_id', auth()->id())->get();
+    }
 }

@@ -15,8 +15,7 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
-        $shoppingCarts = ShoppingCart::with('goods')->where('buyer_id', auth()->id())->get();
-        // dd($shoppingCarts);
+        $shoppingCarts = ShoppingCart::getDataById();
         return view('shop.cart', compact('shoppingCarts'));
     }
 

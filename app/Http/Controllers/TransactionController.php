@@ -21,9 +21,13 @@ class TransactionController extends Controller
         {
             $transactions = Transaction::orderByDesc('created_at')->get();
         }
-        else
+        elseif (auth()->user()->role == 'penjual')
         {
             $transactions = Transaction::with('transaction_details.goods.user')->whereRelation('transaction_details.goods', 'user_id', '=', auth()->id())->orderByDesc('created_at')->get();
+        }
+        else
+        {
+            $transactions = Transaction::where('buyer_id', auth()->id())->orderByDesc('created_at')->get();
         }
         return view('transactions.index', compact('transactions'));
     }

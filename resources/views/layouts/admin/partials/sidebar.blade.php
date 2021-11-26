@@ -74,10 +74,10 @@
                     <li class="nav-small-cap">
                         <span class="hide-menu">Applications</span>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                    <li class="sidebar-item {{ Request::segment(1) === 'transactions' ? 'selected' : '' }}"">
+                        <a class="sidebar-link sidebar-link" href="{{ route('transactions.index') }}" aria-expanded="false">
                             <i data-feather="credit-card" class="feather-icon"></i>
-                            <span class="hide-menu">Transaksi</span>
+                            <span class="hide-menu">Riwayat Transaksi</span>
                         </a>
                     </li>
                 @endif

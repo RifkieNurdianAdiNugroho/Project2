@@ -56,7 +56,7 @@
                             </thead>
                             <tbody>
                                 @foreach($transaction->transaction_details as $item)
-                                    @if (auth()->user()->role == 'admin')
+                                    @if (auth()->user()->role == 'admin' || auth()->user()->role == 'pembeli')
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->goods->name }}</td>

@@ -32,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('shoppingCarts/{id}', [ShoppingCartController::class, 'destroy'])->name('shoppingCarts.destroy');
     Route::get('transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
     Route::post('transactions', [TransactionController::class, 'store'])->name('transactions.store');
+    Route::get('transactions', [TransactionController::class, 'index'])->name('transactions.index');
+    Route::get('transactions/{transaction}/show', [TransactionController::class, 'show'])->name('transactions.show');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -46,8 +48,6 @@ Route::middleware(['auth', 'role:penjual'])->group(function () {
 
 Route::middleware(['auth', 'role:admin,penjual'])->group(function () {
     Route::resource('goods', GoodsController::class);
-    Route::get('transactions', [TransactionController::class, 'index'])->name('transactions.index');
-    Route::get('transactions/{transaction}/show', [TransactionController::class, 'show'])->name('transactions.show');
 });
 
 Route::middleware(['auth', 'role:pembeli'])->group(function () {

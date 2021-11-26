@@ -28,10 +28,10 @@
                     <div class="sidebar__item">
                         <h4>Kategori</h4>
                         <ul>
-                            <li><a href="#">Sayuran Segar</a></li>
-                            <li><a href="#">Buah-Buahan</a></li>
-                            <li><a href="#">Daging Segar</a></li>
-                            <li><a href="#">Bumbu Dapur</a></li>
+                            <li><a href="{{ route('shop.filterCategory', 'sayur segar') }}" class="{{ Request::segment(2) === 'sayur segar' ? 'text-primary font-weight-bold' : '' }}">Sayuran Segar</a></li>
+                            <li><a href="{{ route('shop.filterCategory', 'buah segar') }}" class="{{ Request::segment(2) === 'buah segar' ? 'text-primary font-weight-bold' : '' }}">Buah-Buahan</a></li>
+                            <li><a href="{{ route('shop.filterCategory', 'daging segar') }}" class="{{ Request::segment(2) === 'daging segar' ? 'text-primary font-weight-bold' : '' }}">Daging Segar</a></li>
+                            <li><a href="{{ route('shop.filterCategory', 'bumbu dapur') }}" class="{{ Request::segment(2) === 'bumbu dapur' ? 'text-primary font-weight-bold' : '' }}">Bumbu Dapur</a></li>
                         </ul>
                     </div>
                     <div class="sidebar__item">

@@ -39,6 +39,16 @@ class Goods extends Model
     }
 
     /**
+     * Get all of the transactionDetails for the Goods
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactionDetails()
+    {
+        return $this->hasMany(TransactionDetail::class, 'goods_id', 'id');
+    }
+
+    /**
       * The "booted" method of the model.
       *
       * @return void

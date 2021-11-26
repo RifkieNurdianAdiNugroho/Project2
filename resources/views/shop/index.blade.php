@@ -46,13 +46,7 @@
                             @foreach ($best_sellers as $best_seller)
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="{{ asset('storage/' . $best_seller->goodsImages[0]->src) }}">
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
+                                        <div class="product__discount__item__pic set-bg" data-setbg="{{ asset('storage/' . $best_seller->goodsImages[0]->src) }}"></div>
                                         <div class="product__discount__item__text">
                                             <span>{{ $best_seller->user->name }}</span>
                                             <h5><a href="{{ route('shop.show', $best_seller->id) }}">{{ $best_seller->name }}</a></h5>
@@ -71,13 +65,7 @@
                     @foreach ($goods as $item)
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/' . $item->goodsImages[0]->src) }}">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
+                                <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/' . $item->goodsImages[0]->src) }}"></div>
                                 <div class="product__discount__item__text">
                                     <span>{{ $item->user->name }}</span>
                                     <h5><a href="{{ route('shop.show', $item->id) }}">{{ $item->name }}</a></h5>

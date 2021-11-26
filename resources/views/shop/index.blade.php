@@ -34,30 +34,32 @@
                             <li><a href="#">Bumbu Dapur</a></li>
                         </ul>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-9 col-md-7">
-                <div class="product__discount">
-                    <div class="section-title product__discount__title">
-                        <h2>Produk Terlaris</h2>
-                    </div>
-                    <div class="row">
-                        <div class="product__discount__slider owl-carousel">
-                            @foreach ($best_sellers as $best_seller)
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="{{ asset('storage/' . $best_seller->goodsImages[0]->src) }}"></div>
-                                        <div class="product__discount__item__text">
-                                            <span>{{ $best_seller->user->name }}</span>
-                                            <h5><a href="{{ route('shop.show', $best_seller->id) }}">{{ $best_seller->name }}</a></h5>
-                                            <div class="product__item__price">{{ 'Rp ' . number_format($best_seller->price, 0, ',', '.') }}</div>
-                                        </div>
+                    <div class="sidebar__item">
+                        <div class="latest-product__text">
+                            <h4>Produk Terlaris</h4>
+                            <div class="latest-product__slider owl-carousel">
+                                @foreach ($best_sellers->split($best_sellers->count()/3) as $section)
+                                    <div class="latest-prdouct__slider__item">
+                                        @foreach ($section as $best_seller)
+                                            <a href="{{ route('shop.show', $best_seller->id) }}" class="latest-product__item">
+                                                <div class="latest-product__item__pic">
+                                                    <img src="{{ asset('storage/' . $best_seller->goodsImages[0]->src) }}" style="width: 110px !important; height: 110px !important">
+                                                </div>
+                                                <div class="latest-product__item__text">
+                                                    <h6>{{ $best_seller->name }}</h6>
+                                                    <p style="font-size: 13px">{{ $best_seller->user->name }}</p>
+                                                    <span>{{ 'Rp ' . number_format($best_seller->price, 0, ',', '.') }}</span>
+                                                </div>
+                                            </a>
+                                        @endforeach
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-9 col-md-7">
                 <div class="section-title product__discount__title">
                     <h2>Semua Produk</h2>
                 </div>

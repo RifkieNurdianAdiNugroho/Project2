@@ -16,7 +16,8 @@ class ShopController extends Controller
                         ->orderByDesc('transaction_details_sum_qty')
                         ->limit(6)
                         ->get();
-        return view('shop.index', compact('goods', 'best_sellers'));
+        $title = "Semua Produk";
+        return view('shop.index', compact('goods', 'best_sellers', 'title'));
     }
 
     public function show($id)
@@ -29,6 +30,14 @@ class ShopController extends Controller
     {
         $keyword = $request->keyword;
 
+        $best_sellers = Goods::with('transactionDetails', 'user', 'goodsImages')
+                        ->withSum('transactionDetails', 'qty')
+                        ->orderByDesc('transaction_details_sum_qty')
+                        ->limit(6)
+                        ->get();
+
+        $title = "Hasil Pencarian: " . $keyword;
+
         if ($keyword == null || $keyword == '')
         {
             return redirect()->route('shop.index');
@@ -36,6 +45,6 @@ class ShopController extends Controller
 
         $goods = Goods::with('goodsImages')->where('name', 'like', '%' . $keyword . '%')->get();
 
-        return view('shop.search', compact('goods', 'keyword'));
+        return view('shop.index', compact('goods', 'best_sellers', 'title'));
     }
 }

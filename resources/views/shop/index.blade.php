@@ -61,7 +61,7 @@
             </div>
             <div class="col-lg-9 col-md-7">
                 <div class="section-title product__discount__title">
-                    <h2>Semua Produk</h2>
+                    <h2>{{ $title }}</h2>
                 </div>
                 <div class="row">
                     @foreach ($goods as $item)

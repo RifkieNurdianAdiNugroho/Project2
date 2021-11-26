@@ -34,8 +34,8 @@
                             <span class="hide-menu">Manajemen Pembeli</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                    <li class="sidebar-item {{ Request::segment(1) === 'transactions' ? 'selected' : '' }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('transactions.index') }}" aria-expanded="false">
                             <i data-feather="credit-card" class="feather-icon"></i>
                             <span class="hide-menu">Transaksi</span>
                         </a>
@@ -57,8 +57,8 @@
                             <span class="hide-menu">Manajemen Barang</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                    <li class="sidebar-item {{ Request::segment(1) === 'transactions' ? 'selected' : '' }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('transactions.index') }}" aria-expanded="false">
                             <i data-feather="credit-card" class="feather-icon"></i>
                             <span class="hide-menu">Transaksi</span>
                         </a>

@@ -6,6 +6,7 @@ use App\Models\ShoppingCart;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -16,8 +17,15 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $shoppingCarts = ShoppingCart::getDataById();
-        return view('shop.checkout', compact('shoppingCarts'));
+        if (auth()->user()->role == 'admin')
+        {
+            $transactions = Transaction::orderByDesc('created_at')->get();
+        }
+        else
+        {
+            $transactions = Transaction::with('transaction_details.goods.user')->whereRelation('transaction_details.goods', 'user_id', '=', auth()->id())->orderByDesc('created_at')->get();
+        }
+        return view('transactions.index', compact('transactions'));
     }
 
     /**
@@ -27,7 +35,8 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        $shoppingCarts = ShoppingCart::getDataById();
+        return view('shop.checkout', compact('shoppingCarts'));
     }
 
     /**
@@ -65,7 +74,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        return view('transactions.show', compact('transaction'));
     }
 
     /**

@@ -24,4 +24,18 @@ class ShopController extends Controller
         $goods = Goods::with('goodsImages')->find($id);
         return view('shop.detail', compact('goods'));
     }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+
+        if ($keyword == null || $keyword == '')
+        {
+            return redirect()->route('shop.index');
+        }
+
+        $goods = Goods::with('goodsImages')->where('name', 'like', '%' . $keyword . '%')->get();
+
+        return view('shop.search', compact('goods', 'keyword'));
+    }
 }

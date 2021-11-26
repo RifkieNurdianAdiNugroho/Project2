@@ -57,8 +57,9 @@
             <div class="col-lg-7 mt-2">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action="#">
-                            <input type="text" placeholder="Apa yang Anda butuhkan?">
+                        <form action="{{ route('shop.search') }}" method="GET">
+                            @csrf
+                            <input type="text" name="keyword" placeholder="Apa yang Anda butuhkan?">
                             <button type="submit" class="site-btn">Cari</button>
                         </form>
                     </div>

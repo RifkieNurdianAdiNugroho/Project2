@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/{id}/show', [ShopController::class, 'show'])->name('shop.show');
+Route::get('/search', [ShopController::class, 'search'])->name('shop.search');
 Route::resource('shoppingCarts', ShoppingCartController::class)->only('index', 'store');
 
 Auth::routes();

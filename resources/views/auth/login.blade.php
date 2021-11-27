@@ -23,8 +23,8 @@
                     <div class="text-center">
                         <img src="{{ asset('adminmart/assets/images/text-logo.png') }}" alt="wrapkit" width="134" height="34">
                     </div>
-                    <h2 class="mt-3 text-center">Sign In</h2>
-                    <p class="text-center">Enter your email address and password to access admin panel.</p>
+                    <h2 class="mt-3 text-center">Masuk</h2>
+                    <p class="text-center">Masukkan email dan password untuk mengakses panel admin Anda.</p>
                     <form class="mt-4" method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="row">
@@ -32,7 +32,7 @@
                                 <div class="form-group">
                                     <label class="text-dark" for="email">Email</label>
                                     <input class="form-control @error('email') is-invalid @enderror" id="email" name="email" type="email"
-                                        placeholder="enter your email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                                 <div class="form-group">
                                     <label class="text-dark" for="password">Password</label>
                                     <input class="form-control @error('password') is-invalid @enderror" id="password" name="password" type="password"
-                                        placeholder="enter your password" required autocomplete="current-password">
+                                        required autocomplete="current-password">
                                     
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -55,10 +55,10 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 text-center">
-                                <button type="submit" class="btn btn-block btn-dark">Sign In</button>
+                                <button type="submit" class="btn btn-block btn-dark">Masuk</button>
                             </div>
                             <div class="col-lg-12 text-center mt-5">
-                                Don't have an account? <a href="{{ route('register') }}" class="text-danger">Sign Up</a>
+                                Belum memiliki akun? <a href="{{ route('register') }}" class="text-danger">Daftar</a>
                             </div>
                         </div>
                     </form>

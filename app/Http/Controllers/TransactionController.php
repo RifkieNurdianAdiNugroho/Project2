@@ -63,6 +63,7 @@ class TransactionController extends Controller
                 'transaction_id' => $transaction->id,
                 'goods_id' => $cart->goods_id,
                 'qty' => $cart->qty,
+                'status' => 'pending',
             ]);
             $cart->delete();
         }
@@ -102,6 +103,17 @@ class TransactionController extends Controller
     public function update(Request $request, Transaction $transaction)
     {
         //
+    }
+
+    public function changeStatus(Request $request)
+    {
+        foreach ($request->td_id as $id) {
+            TransactionDetail::where('id', $id)->update([
+                'status' => $request->status,
+            ]);
+        }
+
+        return redirect()->back();
     }
 
     /**

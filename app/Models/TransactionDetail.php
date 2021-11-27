@@ -35,4 +35,13 @@ class TransactionDetail extends Model
     {
         return $this->belongsTo(Transaction::class);
     }
+
+    public static function checkStatus($id)
+    {
+        return TransactionDetail::select('status')
+                ->with('goods.user')
+                ->whereRelation('transaction', 'transaction_id', '=', $id)
+                ->whereRelation('goods', 'user_id', '=', auth()->id())
+                ->first();
+    }
 }

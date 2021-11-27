@@ -44,6 +44,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:penjual'])->group(function () {
     Route::view('penjual/dashboard', 'layouts.admin.master');
+    Route::post('changeStatus', [TransactionController::class, 'changeStatus'])->name('transactions.changeStatus');
 });
 
 Route::middleware(['auth', 'role:admin,penjual'])->group(function () {

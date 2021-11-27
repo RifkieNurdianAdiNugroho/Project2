@@ -45,6 +45,9 @@
                             </thead>
                             <tbody>
                                 @foreach($transactions as $item)
+                                    @php
+                                        $status = App\Models\TransactionDetail::checkStatus($item->id);
+                                    @endphp
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->created_at->format('d M Y') }}</td>
@@ -53,12 +56,16 @@
                                         <td>{{ 'Rp ' . number_format($item->total, 0, ',', '.') }}</td>
                                         @if (auth()->user()->role == 'penjual')
                                             <td class="text-capitalize">
-                                                @if ($item->transaction_details[0]->status == 'pending')
-                                                    <span class="badge badge-warning badge-pill">{{ $item->transaction_details[0]->status }}</span>
-                                                @elseif ($item->transaction_details[0]->status == 'reject')
-                                                    <span class="badge badge-danger badge-pill">{{ $item->transaction_details[0]->status }}</span>
+                                                @if ($status->status == 'pending')
+                                                    <span class="badge badge-warning badge-pill">Menunggu</span>
+                                                @elseif ($status->status == 'reject')
+                                                    <span class="badge badge-danger badge-pill">Ditolak</span>
+                                                @elseif ($status->status == 'packing')
+                                                    <span class="badge badge-light badge-pill">Dikemas</span>
+                                                @elseif ($status->status == 'sending')
+                                                    <span class="badge badge-primary badge-pill">Dikirim</span>
                                                 @else
-                                                    <span class="badge badge-success badge-pill">{{ $item->transaction_details[0]->status }}</span>
+                                                    <span class="badge badge-success badge-pill">Selesai</span>
                                                 @endif
                                             </td>
                                         @endif

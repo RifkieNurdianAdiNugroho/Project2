@@ -44,4 +44,13 @@ class TransactionDetail extends Model
                 ->whereRelation('goods', 'user_id', '=', auth()->id())
                 ->first();
     }
+
+    public static function checkStatusByBuyer($id)
+    {
+        return TransactionDetail::select('status')
+                ->with('goods.user')
+                ->whereRelation('transaction', 'transaction_id', '=', $id)
+                ->whereRelation('transaction', 'buyer_id', '=', auth()->id())
+                ->first(); 
+    }
 }

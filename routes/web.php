@@ -53,4 +53,5 @@ Route::middleware(['auth', 'role:admin,penjual'])->group(function () {
 
 Route::middleware(['auth', 'role:pembeli'])->group(function () {
     Route::view('pembeli/dashboard', 'layouts.admin.master');
+    Route::get('confirmSuccess/{id}', [TransactionController::class, 'confirmSuccess'])->name('transactions.confirmSuccess');
 });

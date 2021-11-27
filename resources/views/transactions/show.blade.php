@@ -48,17 +48,15 @@
                                 </dl>
                             </div>
                             <div class="col-md-3">
-                                @php
-                                    $status = App\Models\TransactionDetail::checkStatus($transaction->id);
-                                @endphp
                                 @if (auth()->user()->role == 'penjual')
+                                    @php
+                                        $status = App\Models\TransactionDetail::checkStatus($transaction->id);
+                                    @endphp
                                     @if ($status->status == 'pending')
                                         <button type="submit" name="status" value="packing" class="btn btn-outline-primary btn-lg btn-rounded">Konfirmasi</button> &nbsp;
                                         <button type="submit" name="status" value="reject" class="btn btn-outline-danger btn-lg btn-rounded">Tolak</button>
                                     @elseif ($status->status == 'packing')
                                         <button type="submit" name="status" value="sending" class="btn btn-outline-secondary btn-lg btn-rounded float-right">Kirim</button>
-                                        @elseif ($status->status == 'sending')
-                                        <button type="submit" name="status" value="success" class="btn btn-outline-success btn-lg btn-rounded float-right" disabled>Selesai</button>
                                     @endif
                                 @endif
                             </div>
@@ -91,12 +89,15 @@
                                                     @elseif ($item->status == 'packing')
                                                         <span class="badge badge-light badge-pill">Dikemas</span>
                                                     @elseif ($item->status == 'sending')
-                                                        <span class="badge badge-primary badge-pill">Dikirim</span>
+                                                        <span class="badge badge-primary badge-pill">Dikirim</span> | 
+                                                        @if (auth()->user()->role == 'pembeli')
+                                                            <a href="{{ route('transactions.confirmSuccess', $item->id) }}" class="btn btn-outline-success btn-sm btn-rounded" style="height: 20px !important; font-size: 12px !important; line-height: 1">Konfirmasi Selesai</a>
+                                                        @endif
                                                     @else
                                                         <span class="badge badge-success badge-pill">Selesai</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ 'Rp ' . number_format($item->goods->price * $item->qty, 0, ',', '.') }}
+                                                <td>{{ 'Rp ' . number_format($item->goods->price * $item->qty, 0, ',', '.') }}</td>
                                             </tr>
                                         @elseif (auth()->user()->role == 'penjual')
                                             @if (isset($item->goods->user_id))

@@ -116,6 +116,15 @@ class TransactionController extends Controller
         return redirect()->back();
     }
 
+    public function confirmSuccess($id)
+    {
+        TransactionDetail::where('id', $id)->update([
+            'status' => 'success',
+        ]);
+
+        return redirect()->back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *

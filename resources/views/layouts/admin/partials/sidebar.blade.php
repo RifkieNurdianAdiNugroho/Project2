@@ -6,8 +6,8 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 @if (Auth::user()->role == 'admin')
-                    <li class="sidebar-item">
-                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                    <li class="sidebar-item {{ Request::segment(2) === 'dashboard' ? 'selected' : '' }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('dashboard.admin') }}" aria-expanded="false">
                             <i data-feather="home" class="feather-icon"></i>
                             <span class="hide-menu">Dashboard</span>
                         </a>
@@ -41,8 +41,8 @@
                         </a>
                     </li>
                 @elseif (Auth::user()->role == 'penjual')
-                    <li class="sidebar-item">
-                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                    <li class="sidebar-item {{ Request::segment(2) === 'dashboard' ? 'selected' : '' }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('dashboard.seller') }}" aria-expanded="false">
                             <i data-feather="home" class="feather-icon"></i>
                             <span class="hide-menu">Dashboard</span>
                         </a>
@@ -64,8 +64,8 @@
                         </a>
                     </li>
                 @elseif (Auth::user()->role == 'pembeli')
-                    <li class="sidebar-item">
-                        <a class="sidebar-link sidebar-link" href="#" aria-expanded="false">
+                    <li class="sidebar-item {{ Request::segment(2) === 'dashboard' ? 'selected' : '' }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('dashboard.buyer') }}" aria-expanded="false">
                             <i data-feather="home" class="feather-icon"></i>
                             <span class="hide-menu">Dashboard</span>
                         </a>

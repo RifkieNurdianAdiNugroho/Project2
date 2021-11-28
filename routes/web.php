@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BuyerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoodsController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ShopController;
@@ -37,13 +38,13 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::view('admin/dashboard', 'layouts.admin.master');
+    Route::get('admin/dashboard', [DashboardController::class, 'admin'])->name('dashboard.admin');
     Route::resource('sellers', SellerController::class);
     Route::resource('buyers', BuyerController::class);
 });
 
 Route::middleware(['auth', 'role:penjual'])->group(function () {
-    Route::view('penjual/dashboard', 'layouts.admin.master');
+    Route::get('penjual/dashboard', [DashboardController::class, 'seller'])->name('dashboard.seller');
     Route::post('changeStatus', [TransactionController::class, 'changeStatus'])->name('transactions.changeStatus');
 });
 
@@ -52,6 +53,6 @@ Route::middleware(['auth', 'role:admin,penjual'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:pembeli'])->group(function () {
-    Route::view('pembeli/dashboard', 'layouts.admin.master');
+    Route::get('pembeli/dashboard', [DashboardController::class, 'buyer'])->name('dashboard.buyer');
     Route::get('confirmSuccess/{id}', [TransactionController::class, 'confirmSuccess'])->name('transactions.confirmSuccess');
 });

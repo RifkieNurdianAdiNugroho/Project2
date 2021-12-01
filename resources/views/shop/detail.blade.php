@@ -42,7 +42,6 @@
                         </div>
                         <input type="hidden" name="goods_id" value="{{ $goods->id }}">
                         <button type="submit" class="primary-btn" style="border: none">Masukkan Keranjang</button>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     </div>
                 </form>
             </div>

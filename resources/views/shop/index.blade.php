@@ -66,14 +66,16 @@
                 <div class="row">
                     @foreach ($goods as $item)
                         <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/' . $item->goodsImages[0]->src) }}"></div>
-                                <div class="product__discount__item__text">
-                                    <span>{{ $item->user->name }}</span>
-                                    <h5><a href="{{ route('shop.show', $item->id) }}">{{ $item->name }}</a></h5>
-                                    <div class="product__item__price">{{ 'Rp ' . number_format($item->price, 0, ',', '.') }}</div>
+                            <a href="{{ route('shop.show', $item->id) }}">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/' . $item->goodsImages[0]->src) }}"></div>
+                                    <div class="product__discount__item__text">
+                                        <span>{{ $item->user->name }}</span>
+                                        <h5>{{ $item->name }}</h5>
+                                        <div class="product__item__price">{{ 'Rp ' . number_format($item->price, 0, ',', '.') }}</div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>

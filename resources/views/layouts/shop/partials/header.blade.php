@@ -70,13 +70,6 @@
                     <ul>
                         @if (Auth::check())
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-heart" style="font-size: 24px"></i>
-                                    <span
-                                        style="font-size: 12px; height: 16px; width: 16px; line-height: 15px; top: -5px">1</span>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="{{ route('shoppingCarts.index') }}">
                                     <i class="fa fa-shopping-bag" style="font-size: 24px"></i>
                                     @php
@@ -90,11 +83,6 @@
                                 </a>
                             </li>
                         @else
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-heart" style="font-size: 24px"></i>
-                                </a>
-                            </li>
                             <li>
                                 <a href="{{ route('login') }}">
                                     <i class="fa fa-shopping-bag" style="font-size: 24px"></i>

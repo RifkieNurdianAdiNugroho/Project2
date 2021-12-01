@@ -81,10 +81,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="{{ route('shop.index') }}" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                        <a href="{{ route('shop.index') }}" class="primary-btn cart-btn">Lanjutkan Belanja</a>
                         <button type="submit" class="primary-btn cart-btn cart-btn-right" style="border: none !important">
                             <span class="icon_loading"></span>
-                            Upadate Cart
+                            Update Keranjang Belanja
                         </button>
                     </div>
                 </div>
@@ -101,11 +101,11 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
-                        <h5>Cart Total</h5>
+                        <h5>Total Keranjang Belanja</h5>
                         <ul>
                             <li>Total <span>{{ 'Rp ' . number_format($total, 0, ',', '.') }}</span></li>
                         </ul>
-                        <a href="{{ route('transactions.create') }}" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="{{ route('transactions.create') }}" class="primary-btn">Proses ke Pembayaran</a>
                     </div>
                 </div>
             </div>

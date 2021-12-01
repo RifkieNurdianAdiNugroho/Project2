@@ -118,19 +118,6 @@
             <!-- End Left side toggle and nav items -->
             <!-- Right side toggle and nav items -->
             <ul class="navbar-nav float-right">
-                <!-- Search -->
-                <li class="nav-item d-none d-md-block">
-                    <a class="nav-link" href="javascript:void(0)">
-                        <form>
-                            <div class="customize-input">
-                                <input class="form-control custom-shadow custom-radius border-0 bg-white" type="search"
-                                    placeholder="Search" aria-label="Search">
-                                <i class="form-control-icon" data-feather="search"></i>
-                            </div>
-                        </form>
-                    </a>
-                </li>
-                <!-- End Search -->
                 <!-- User profile and search -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"

@@ -41,7 +41,11 @@
                             </div>
                         </div>
                         <input type="hidden" name="goods_id" value="{{ $goods->id }}">
-                        <button type="submit" class="primary-btn" style="border: none">Masukkan Keranjang</button>
+                        @if (Auth::check())
+                            <button type="submit" class="primary-btn" style="border: none">Masukkan Keranjang</button>
+                        @else
+                            <a href="{{ route('login') }}" class="primary-btn" style="border: none">Masukkan Keranjang</a>
+                        @endif
                     </div>
                 </form>
             </div>

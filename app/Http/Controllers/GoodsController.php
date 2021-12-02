@@ -52,7 +52,7 @@ class GoodsController extends Controller
         if (Auth::user()->role == 'admin') {
             $goods = Goods::create($request->validated());
         } else {
-            auth()->user()->goods()->create($request->validated());
+            $goods = auth()->user()->goods()->create($request->validated());
         }
         if ($request->file('goods_images')) {
             for ($i = 0; $i < count($request->goods_images); $i++) {
